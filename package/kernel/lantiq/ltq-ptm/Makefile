@@ -8,7 +8,7 @@ include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=ltq-ptm
-PKG_RELEASE:=3
+PKG_RELEASE:=4
 
 PKG_MAINTAINER:=John Crispin <john@phrozen.org>
 PKG_LICENSE:=GPL-2.0+
@@ -24,9 +24,9 @@ define KernelPackage/ltq-ptm-template
   VARIANT:=$(1)
   DEPENDS:=@TARGET_lantiq_$(2)
 ifeq ($(1),vr9)
-  DEPENDS+= +kmod-ltq-vdsl-vr9-mei
+  DEPENDS+= +PACKAGE_kmod-ltq-ptm-$(1):kmod-ltq-vdsl-vr9-mei
 else
-  DEPENDS+= +kmod-ltq-adsl-$(1)-mei
+  DEPENDS+= +PACKAGE_kmod-ltq-ptm-$(1):kmod-ltq-adsl-$(1)-mei
 endif
 ifeq ($(1),ase)
   DEPENDS+=@BROKEN
